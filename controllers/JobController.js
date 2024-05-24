@@ -55,4 +55,29 @@ module.exports = {
       res.status(500).json(job);
     }
   },
+
+  getAllJob: async (req, res) => {
+    const recent = req.query.new;
+    try {
+      let jobs;
+      if (recent) {
+        jobs = await Job.findById({}, { createdAt: 0, updatedAt: 0, __v: 0 })
+          .sort({ createdAt: -1 })
+          .limit(2);
+      } else {
+        jobs = await Job.findById({}, { createdAt: 0, updatedAt: 0, __v: 0 });
+      }
+      res.status(200).json(jobs);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  searchJob: async (req, res) => {
+    const result = Job.aggregate({});
+    try {
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
 };
