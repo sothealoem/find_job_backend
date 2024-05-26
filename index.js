@@ -3,20 +3,17 @@ const app = express();
 const port = 3000;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const jobRouter = require("./routers/job");
-
+const bodyParser = require("body-parser");
 dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(() => console.log("Connected to v2 DB"))
+  .then(() => console.log("Connect to V2 Db"))
   .catch((err) => console.log(err));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use("/api/jobs", jobRouter);
 app.listen(process.env.PORT || port, () =>
-  console.log(` to Hub is listening on port ${process.env.PORT}!`)
+  console.log(`The Hub is listening on port ${process.env.PORT}!`)
 );
