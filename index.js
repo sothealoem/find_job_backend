@@ -14,6 +14,7 @@ mongoose
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/jobs", jobRouter);
+
 app.listen(process.env.PORT || port, () =>
   console.log(`The Hub is listening on port ${process.env.PORT}!`)
 );
